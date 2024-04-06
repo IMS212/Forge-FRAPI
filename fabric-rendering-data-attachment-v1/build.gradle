@@ -1,0 +1,4 @@
+dependencies {
+    implementation(project(":fabric-api-base"))
+    implementation(project(":fabric-block-view-api-v2"))
+}
