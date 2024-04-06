@@ -1,3 +1,11 @@
 dependencies {
     implementation(project(":fabric-api-base"))
 }
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'frapi.refmap.json'
+    config 'fabric-renderer-api-v1.debughud.mixins.json'
+    config 'fabric-renderer-api-v1.mixins.json'
+
+}

@@ -45,8 +45,8 @@ public abstract class ChunkRendererRegionBuilderMixin {
 	private static final AtomicInteger ERROR_COUNTER = new AtomicInteger();
 	private static final Logger LOGGER = LoggerFactory.getLogger(ChunkRendererRegionBuilderMixin.class);
 
-	@Inject(method = "createRegion(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;IZ)Lnet/minecraft/client/renderer/chunk/RenderChunkRegion;", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void createDataMap(Level world, BlockPos startPos, BlockPos endPos, int offset, boolean nullForEmpty, CallbackInfoReturnable<RenderChunkRegion> cir, int startX, int startZ, int endX, int endZ, RenderRegionCache.ChunkInfo[][] chunksXZ) {
+	@Inject(method = "createRegion", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD)
+	private void createDataMap(Level world, BlockPos startPos, BlockPos endPos, int offset, CallbackInfoReturnable<RenderChunkRegion> cir, int startX, int startZ, int endX, int endZ, RenderRegionCache.ChunkInfo[][] chunksXZ) {
 		RenderChunkRegion rendererRegion = cir.getReturnValue();
 
 		if (rendererRegion == null) {

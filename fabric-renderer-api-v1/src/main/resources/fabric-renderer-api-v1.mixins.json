@@ -1,6 +1,7 @@
 {
   "required": true,
   "package": "net.fabricmc.fabric.mixin.renderer",
+  "refmap": "frapi.refmap.json",
   "compatibilityLevel": "JAVA_16",
   "client": [
     "client.BakedModelMixin",

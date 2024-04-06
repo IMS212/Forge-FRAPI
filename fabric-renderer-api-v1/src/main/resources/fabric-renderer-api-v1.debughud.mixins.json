@@ -1,6 +1,7 @@
 {
   "required": false,
   "package": "net.fabricmc.fabric.mixin.renderer.client.debughud",
+  "refmap": "frapi.refmap.json",
   "compatibilityLevel": "JAVA_16",
   "client": [
     "DebugHudMixin"

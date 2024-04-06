@@ -7,3 +7,11 @@ minecraft {
         file('src/main/resources/META-INF/accesstransformer.cfg')
     }
 }
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'fabric-block-view-api-v2.refmap.json'
+    config 'fabric-block-view-api-v2.client.mixins.json'
+    config 'fabric-block-view-api-v2.mixins.json'
+
+}

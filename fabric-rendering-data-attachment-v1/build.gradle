@@ -2,3 +2,11 @@ dependencies {
     implementation(project(":fabric-api-base"))
     implementation(project(":fabric-block-view-api-v2"))
 }
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'fapi-data-attachment.refmap.json'
+    config 'fabric-rendering-data-attachment-v1.client.mixins.json'
+    config 'fabric-rendering-data-attachment-v1.mixins.json'
+
+}

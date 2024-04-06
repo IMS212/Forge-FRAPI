@@ -16,7 +16,7 @@
 
 package net.fabricmc.fabric.impl.rendering.data;
 
-import net.neoforged.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod("fabric_rendering_data_attachment_v1")
 public class RenderingDataAttachmentImpl {
