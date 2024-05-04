@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.MultiPartBakedModel;
 import net.minecraft.core.BlockPos;
@@ -29,6 +30,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.MultipartModelData;
 import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -70,7 +73,7 @@ public class MultipartBakedModelMixin implements FabricBakedModel {
 	}
 
 	@Override
-	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
+	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, RenderType renderType, ModelData modelData, Supplier<RandomSource> randomSupplier, RenderContext context) {
 		BitSet bitSet = this.selectorCache.get(state);
 
 		if (bitSet == null) {
@@ -97,7 +100,7 @@ public class MultipartBakedModelMixin implements FabricBakedModel {
 
 		for (int i = 0; i < this.selectors.size(); i++) {
 			if (bitSet.get(i)) {
-				((FabricBakedModel) selectors.get(i).getRight()).emitBlockQuads(blockView, state, pos, subModelRandomSupplier, context);
+				((FabricBakedModel) selectors.get(i).getRight()).emitBlockQuads(blockView, state, pos, renderType, MultipartModelData.resolve(modelData, selectors.get(i).getRight()), subModelRandomSupplier, context);
 			}
 		}
 	}

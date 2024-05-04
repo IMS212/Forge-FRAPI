@@ -20,12 +20,14 @@ import java.util.function.Supplier;
 
 import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
 import net.fabricmc.fabric.impl.renderer.VanillaModelEncoder;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.model.data.ModelData;
 
 /**
  * Interface for baked models that output meshes with enhanced rendering features.
@@ -77,8 +79,8 @@ public interface FabricBakedModel {
 	 * Will not be thread-safe. Do not cache or retain a reference.
 	 * @param context Accepts model output.
 	 */
-	default void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
-		VanillaModelEncoder.emitBlockQuads((BakedModel) this, state, randomSupplier, context, context.getEmitter());
+	default void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, RenderType renderType, ModelData modelData, Supplier<RandomSource> randomSupplier, RenderContext context) {
+		VanillaModelEncoder.emitBlockQuads((BakedModel) this, state, renderType, modelData, randomSupplier, context, context.getEmitter());
 	}
 
 	/**

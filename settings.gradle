@@ -12,5 +12,6 @@ plugins {
 
 include("fabric-api-base")
 include("fabric-renderer-api-v1")
+include("fabric-renderer-indigo")
 include("fabric-rendering-data-attachment-v1")
 include("fabric-block-view-api-v2")

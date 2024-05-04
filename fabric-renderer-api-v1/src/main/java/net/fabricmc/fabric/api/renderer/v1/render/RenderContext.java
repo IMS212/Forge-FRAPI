@@ -88,13 +88,6 @@ public interface RenderContext {
 	 */
 	void popTransform();
 
-	default ModelData getModelData() {
-		return ModelData.EMPTY;
-	}
-
-	default RenderType getRenderLayer() {
-		return null;
-	}
 
 	/**
 	 * Returns {@code true} if the given face will be culled away.

@@ -1,3 +1,3 @@
 dependencies {
-    implementation(project(":fabric-api-base"))
+    compileOnly(project(":fabric-api-base"))
 }

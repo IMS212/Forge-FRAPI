@@ -1,7 +1,9 @@
 dependencies {
     compileOnly(project(":fabric-api-base"))
+    runtimeOnly(project(":fabric-api-base"))
+    compileOnly(project(":fabric-renderer-api-v1"))
+    runtimeOnly(project(":fabric-renderer-api-v1"))
 }
-
 minecraft {
     accessTransformers {
         file('src/main/resources/META-INF/accesstransformer.cfg')

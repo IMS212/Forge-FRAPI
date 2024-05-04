@@ -19,11 +19,13 @@ package net.fabricmc.fabric.impl.renderer;
 import java.util.List;
 import java.util.function.Supplier;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.Nullable;
 
 import net.fabricmc.fabric.api.renderer.v1.Renderer;
@@ -44,7 +46,7 @@ public class VanillaModelEncoder {
 	private static final RenderMaterial MATERIAL_NO_AO = RENDERER.materialFinder().ambientOcclusion(TriState.FALSE).find();
 
 	// Separate QuadEmitter parameter so that Indigo can pass its own emitter that handles vanilla quads differently.
-	public static void emitBlockQuads(BakedModel model, @Nullable BlockState state, Supplier<RandomSource> randomSupplier, RenderContext context, QuadEmitter emitter) {
+	public static void emitBlockQuads(BakedModel model, @Nullable BlockState state, RenderType renderType, ModelData modelData, Supplier<RandomSource> randomSupplier, RenderContext context, QuadEmitter emitter) {
 		final RenderMaterial defaultMaterial = model.useAmbientOcclusion() ? MATERIAL_STANDARD : MATERIAL_NO_AO;
 
 		for (int i = 0; i <= ModelHelper.NULL_FACE_ID; i++) {
@@ -55,7 +57,7 @@ public class VanillaModelEncoder {
 				continue;
 			}
 
-			final List<BakedQuad> quads = model.getQuads(state, cullFace, randomSupplier.get(), context.getModelData(), context.getRenderLayer());
+			final List<BakedQuad> quads = model.getQuads(state, cullFace, randomSupplier.get(), modelData, renderType);
 			final int count = quads.size();
 
 			for (int j = 0; j < count; j++) {
@@ -71,7 +73,7 @@ public class VanillaModelEncoder {
 
 		for (int i = 0; i <= ModelHelper.NULL_FACE_ID; i++) {
 			final Direction cullFace = ModelHelper.faceFromIndex(i);
-			final List<BakedQuad> quads = model.getQuads(state, cullFace, randomSupplier.get(), context.getModelData(), context.getRenderLayer());
+			final List<BakedQuad> quads = model.getQuads(state, cullFace, randomSupplier.get());
 			final int count = quads.size();
 
 			for (int j = 0; j < count; j++) {

@@ -37,6 +37,7 @@ import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.common.util.TriState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,8 +55,8 @@ public abstract class ForwardingBakedModel implements FabricBakedModel, BakedMod
 	}
 
 	@Override
-	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
-		((FabricBakedModel) wrapped).emitBlockQuads(blockView, state, pos, randomSupplier, context);
+	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, RenderType renderType, ModelData modelData, Supplier<RandomSource> randomSupplier, RenderContext context) {
+		((FabricBakedModel) wrapped).emitBlockQuads(blockView, state, pos, renderType, modelData, randomSupplier, context);
 	}
 
 	@Override
@@ -115,13 +116,8 @@ public abstract class ForwardingBakedModel implements FabricBakedModel, BakedMod
 	}
 
 	@Override
-	public boolean useAmbientOcclusion(BlockState state) {
-		return wrapped.useAmbientOcclusion(state);
-	}
-
-	@Override
-	public boolean useAmbientOcclusion(BlockState state, RenderType renderType) {
-		return wrapped.useAmbientOcclusion(state, renderType);
+	public TriState useAmbientOcclusion(BlockState state, ModelData data, RenderType renderType) {
+		return wrapped.useAmbientOcclusion(state, data, renderType);
 	}
 
 	@Override
