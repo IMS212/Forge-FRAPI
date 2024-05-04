@@ -1,4 +1,0 @@
-dependencies {
-    compileOnly(project(":fabric-api-base"))
-    compileOnly(project(":fabric-block-view-api-v2"))
-}

@@ -10,8 +10,8 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
 }
 
-include("fabric-api-base")
-include("fabric-renderer-api-v1")
-include("fabric-renderer-indigo")
-include("fabric-rendering-data-attachment-v1")
-include("fabric-block-view-api-v2")
+include("fabric_api_base")
+include("fabric_renderer_api_v1")
+include("fabric_renderer_indigo")
+include("fabric_rendering_data_attachment_v1")
+include("fabric_block_view_api_v2")

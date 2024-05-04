@@ -1,9 +1,0 @@
-dependencies {
-    compileOnly(project(":fabric-api-base"))
-}
-
-minecraft {
-    accessTransformers {
-        file('src/main/resources/META-INF/accesstransformer.cfg')
-    }
-}

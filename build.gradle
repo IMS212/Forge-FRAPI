@@ -140,7 +140,16 @@ subprojects {
         }
         repositories {
             maven {
-                url "file://${project.projectDir}/repo"
+                name = "myDomainRepository"
+                url = "http://192.168.50.127:8080/releases"
+                credentials {
+                    username = "ims"
+                    password = "joyride"
+                }
+                authentication {
+                    basic(BasicAuthentication)
+                }
+                allowInsecureProtocol = true
             }
         }
     }

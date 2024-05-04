@@ -1,0 +1,4 @@
+dependencies {
+    compileOnly(project(":fabric_api_base"))
+    compileOnly(project(":fabric_block_view_api_v2"))
+}
